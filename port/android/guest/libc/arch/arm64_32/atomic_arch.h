@@ -53,7 +53,11 @@ static inline void a_barrier()
 #define a_spin a_spin
 static inline void a_spin()
 {
+#if defined(__x86_64__) || defined(__i386__)
+	__builtin_ia32_pause();
+#else
 	__builtin_arm_yield();
+#endif
 	/* a compiler barrier, as the "memory" clobber of an asm yield would be */
 	__atomic_signal_fence(__ATOMIC_SEQ_CST);
 }

@@ -295,7 +295,7 @@ static unsigned short msvc_to_control_word(unsigned int value, unsigned short wo
 	return word;
 }
 
-#ifdef HALO_ARM64_GUEST
+#if defined(HALO_ARM64_GUEST) && defined(__aarch64__)
 /* AArch64: the rounding mode lives in FPCR.RMode, the sticky exception
 flags in FPSR. Precision control and exception unmasking have no
 equivalent; the rest of the MSVC control word is only remembered. */
@@ -351,7 +351,7 @@ unsigned int _clearfp(void)
 	__builtin_arm_wsr64("fpsr", __builtin_arm_rsr64("fpsr") & ~0x9fULL);
 	return status;
 }
-#elif defined(HALO_WEB)
+#elif defined(HALO_WEB) || defined(HALO_UWP)
 /* WebAssembly: rounding to nearest and no exception flags, always. The MSVC
 control word is only remembered, so that the game reads back what it set. */
 static unsigned int msvc_control_word = CW_DEFAULT;
