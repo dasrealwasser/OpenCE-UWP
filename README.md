@@ -1,9 +1,9 @@
-# Halo: Combat Evolved for Linux, Windows, Android and the web
+# Halo: Combat Evolved for Linux, Windows, Android, UWP (Xbox Dev Mode) and the web
 
 [![Join our Discord](https://invidget.switchblade.xyz/9gqcHyr5km)](https://discord.gg/9gqcHyr5km)
 
 This project is a port of the Halo: Combat Evolved decompilation to Linux,
-Windows, Android and web browsers. The decompilation is of the Xbox build 2342
+Windows, Android, UWP (Windows 10/11 & Xbox Dev Mode) and web browsers. The decompilation is of the Xbox build 2342
 (`cachebeta.exe`, SHA-256
 `4cc87b45f721270392a96f1674ed2b5cd4a7bb4355faeab4531d1cf1884d9520`).
 
@@ -21,6 +21,7 @@ builds of the latest release:
 | --- | --- | --- |
 | Linux | [halo-linux-release.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-linux-release.zip) | [halo-linux-debug.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-linux-debug.zip) |
 | Windows | [halo-windows-release.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-windows-release.zip) | [halo-windows-debug.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-windows-debug.zip) |
+| UWP (Xbox Dev Mode) | [halo-uwp-release.zip](https://github.com/dasrealwasser/OpenCE-UWP/releases/latest/download/halo-uwp-release.zip) (or [.msix](https://github.com/dasrealwasser/OpenCE-UWP/releases/latest/download/halo-uwp-release.msix)) | [halo-uwp-debug.zip](https://github.com/dasrealwasser/OpenCE-UWP/releases/latest/download/halo-uwp-debug.zip) |
 | Android | [halo-android-release.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-android-release.zip) | [halo-android-debug.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-android-debug.zip) |
 | Web | [halocombatevolved.com](https://halocombatevolved.com/) (or [halo-web-release.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-web-release.zip) for your own server) | [halo-web-debug.zip](https://github.com/OpenCommunityEdition/OpenCE/releases/latest/download/halo-web-debug.zip) |
 
@@ -78,6 +79,7 @@ Each platform has its own instructions:
 | --- | --- |
 | Linux (32-bit x86 executable, OpenGL 4.5, SDL3) | [port/linux/README.md](port/linux/README.md) |
 | Windows (32-bit x86 executable, OpenGL 4.5, SDL3) | [port/windows/README.md](port/windows/README.md) |
+| UWP (Windows 10/11 & Xbox Dev Mode, Direct3D 12, SDL3) | [port/uwp/README.md](port/uwp/README.md) |
 | Android (arm64 app, OpenGL ES 3, SDL3) | [port/android/README.md](port/android/README.md) |
 | Web (WebAssembly, WebGL 2, SDL3; desktop Chrome, Edge and Firefox) | [port/web/README.md](port/web/README.md) |
 
@@ -118,6 +120,7 @@ To build the game:
 | --- | --- |
 | `ninja linux` | `build/linux/halo` |
 | `ninja windows` (on Windows) | `build/windows/halo.exe` and `SDL3.dll` |
+| `ninja uwp` (on Windows) | `build/uwp/halo-uwp.msix` and `halo-uwp.cer` |
 | `ninja android_apk` | `port/android/app/build/outputs/apk/debug/app-debug.apk` |
 | `ninja web` | `build/web/site/`, the web site (`python tools/web_serve.py` serves it) |
 

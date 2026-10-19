@@ -38,6 +38,7 @@ OUTPUTS = {
     # zlib license, as the release carries the other libraries')
     "linux": ["build/linux/halo", "build/linux/libSDL3.so.0", "build/linux/SDL3-LICENSE.txt"],
     "windows": ["build/windows/halo.exe", "build/windows/SDL3.dll"],
+    "uwp": ["build/uwp/halo-uwp.msix", "build/uwp/halo-uwp.cer"],
     "android": [],  # the APK, below
     "web": [],  # the site, below
 }
@@ -117,6 +118,12 @@ def main() -> int:
         for pdb in [ROOT / "build/windows/halo.pdb", *sorted((ROOT / "build/windows/third_party").glob("SDL3-*/lib/x86/SDL3.pdb"))]:
             shutil.copy2(pdb, symbols)
             print(f"{pdb.relative_to(ROOT)} -> {symbols.relative_to(ROOT)}", flush=True)
+    if args.platform == "uwp" and (ROOT / "build/uwp/dependencies").is_dir():
+        deps_dist = dist / "dependencies"
+        if deps_dist.exists():
+            shutil.rmtree(deps_dist)
+        shutil.copytree(ROOT / "build/uwp/dependencies", deps_dist)
+        print(f"build/uwp/dependencies -> {deps_dist.relative_to(ROOT)}", flush=True)
     # the disc image readers (port/linux/src/xiso.c, and the Android app's
     # XisoExtractor.java) follow extract-xiso, whose license asks binaries
     # to carry its notice
